@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff2f7">
+<title>Um pedacinho da nossa história ❤️</title>
+<style>
+:root{--pink:#e879a7;--deep:#9e426d;--paper:#fffafc;--ink:#513746}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(135deg,#ffe8f1,#fff8fb 55%,#f9e4ed);color:var(--ink);font-family:Georgia,serif;min-height:100vh;display:grid;place-items:center;padding:22px}
+.book{width:min(100%,560px);background:var(--paper);border:1px solid #f4c8da;border-radius:24px;box-shadow:0 18px 55px #9e426d22;overflow:hidden}
+.top{height:8px;background:linear-gradient(90deg,#f4a4c5,#d95b91)}
+.content{padding:25px 24px 20px;text-align:center}
+.kicker{font:600 12px system-ui;letter-spacing:2px;text-transform:uppercase;color:#c36b91}
+h1{font-size:clamp(27px,7vw,38px);line-height:1.12;margin:12px 0;color:#713c58}
+.subtitle{font:14px system-ui;color:#9b7185;margin-bottom:18px}
+.photo{width:100%;max-height:360px;object-fit:cover;border-radius:16px;border:5px solid white;box-shadow:0 8px 24px #8e4b6722}
+.page{display:none;animation:fade .35s ease}
+.page.active{display:block}
+h2{font-size:25px;color:#9e426d;margin:22px 0 12px}
+.message{font-size:17px;line-height:1.7;white-space:pre-line;margin:0 auto 18px;max-width:440px}
+.heart{color:#df6c9d;font-size:23px;margin:8px}
+.controls{display:flex;gap:12px;justify-content:center;padding:0 20px 24px}
+button{border:0;border-radius:999px;padding:12px 20px;background:#d95b91;color:white;font-weight:700;font-size:14px}
+button:disabled{opacity:.35}
+#counter{font:12px system-ui;color:#a77b8e;text-align:center;padding-bottom:18px}
+@keyframes fade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<main class="book">
+<div class="top"></div>
+<div class="content">
+<div class="kicker">feito com carinho, só pra você</div>
+<h1>Um pedacinho da nossa história</h1>
+<div class="subtitle">Cada página guarda um sentimento. ❤️</div>
+
+<section class="page active">
+<img class="photo" src="assets/foto-dela.jpg" alt="Foto especial">
+<h2>Onde minha felicidade começou</h2>
+<p class="message">De todas as coisas bonitas que poderiam acontecer na minha vida, conhecer você foi uma das mais especiais. Hoje, quando penso em felicidade, é impossível não lembrar de você. Você se tornou parte dos meus melhores pensamentos e dos momentos que quero guardar para sempre. ❤️</p>
+</section>
+
+<section class="page">
+<h2>Como tudo começou</h2>
+<p class="message">Talvez a gente nem imaginasse tudo o que viveria quando nossas vidas se cruzaram. Aos poucos, as conversas foram ficando especiais, os sorrisos mais frequentes e a vontade de estar perto foi crescendo. Sem perceber, você foi conquistando um espaço enorme no meu coração.</p>
+<div class="heart">♡</div>
+</section>
+
+<section class="page">
+<h2>Meu detalhe favorito</h2>
+<p class="message">Não é só sobre os grandes momentos. São também as conversas bobas, as mensagens inesperadas, seu jeitinho e as pequenas coisas que talvez você nem perceba. É nisso tudo que encontro motivos para gostar ainda mais de você.</p>
+<div class="heart">♡</div>
+</section>
+
+<section class="page">
+<h2>Que venham muitos capítulos</h2>
+<p class="message">Não sei exatamente o que o futuro prepara, mas quero continuar construindo lembranças bonitas com você, com carinho, respeito, parceria e sinceridade. Obrigado por fazer parte da minha história. Eu gosto muito de você! ❤️</p>
+<div class="heart">♥</div>
+</section>
+</div>
+<div class="controls">
+<button id="prev" disabled>← Voltar</button>
+<button id="next">Próxima página →</button>
+</div>
+<div id="counter">Página 1 de 4</div>
+</main>
+<script>
+const pages=[...document.querySelectorAll('.page')];
+let current=0;
+const prev=document.getElementById('prev'),next=document.getElementById('next'),counter=document.getElementById('counter');
+function show(){
+ pages.forEach((p,i)=>p.classList.toggle('active',i===current));
+ prev.disabled=current===0;
+ next.disabled=current===pages.length-1;
+ next.textContent=current===pages.length-1?'Fim ❤️':'Próxima página →';
+ counter.textContent=`Página ${current+1} de ${pages.length}`;
+}
+prev.addEventListener('click',()=>{if(current>0){current--;show()}});
+next.addEventListener('click',()=>{if(current<pages.length-1){current++;show()}});
+</script>
+</body>
+</html>
